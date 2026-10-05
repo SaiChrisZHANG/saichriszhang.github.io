@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { personal } from '../data/site';
+import { foodPhotos } from '../data/food';
+import SoundCloudPlayer from '../components/SoundCloudPlayer.astro';
+import FoodGallery from '../components/FoodGallery.astro';
+---
+<Layout title="More" description="A little beyond economics: Sai Zhang’s interests, music, and cooking.">
+  <header class="page-heading more-intro"><p class="eyebrow">Beyond economics</p><h1>A little more.</h1><p class="lead">{personal.intro}</p></header>
+  <section class="section-grid" aria-labelledby="music-heading"><div class="section-label"><p class="eyebrow">Away from the desk</p><h2 id="music-heading">Music</h2></div><div>{personal.music.map(track => <SoundCloudPlayer track={track} />)}</div></section>
+  {foodPhotos.length > 0 && <section class="section-grid" aria-labelledby="food-heading"><div class="section-label"><h2 id="food-heading">From my kitchen</h2></div><FoodGallery photos={foodPhotos} labelledBy="food-heading" /></section>}
+</Layout>

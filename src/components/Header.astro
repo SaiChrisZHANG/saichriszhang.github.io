@@ -1,0 +1,12 @@
+---
+import { navigation, site } from '../data/site';
+import { url } from '../lib/urls';
+const path = Astro.url.pathname;
+---
+<header class="site-header wrap">
+  <a class="wordmark" href={url('/')}>{site.name}<span class="wordmark-dot" aria-hidden="true">.</span></a>
+  <nav aria-label="Main navigation">
+    {navigation.map(item => <a href={url(item.href)} aria-current={path === url(item.href) ? 'page' : item.href !== '/' && path.startsWith(url(item.href)) ? 'true' : undefined}>{item.label}</a>)}
+    <a class="nav-cv" href={url(site.cv)}>CV <span aria-hidden="true">↗</span><span class="sr-only"> (PDF)</span></a>
+  </nav>
+</header>

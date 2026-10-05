@@ -1,0 +1,64 @@
+---
+import { getImage } from 'astro:assets';
+import type { FoodPhoto } from '../data/food';
+
+interface Props { photos: FoodPhoto[]; labelledBy: string; }
+const { photos, labelledBy } = Astro.props;
+const images = await Promise.all(photos.map(async photo => ({
+  ...photo,
+  optimized: await getImage({
+    src: photo.image,
+    width: Math.min(1200, photo.image.width),
+    widths: [320, 520, 800, 1200].filter(width => width <= photo.image.width),
+    format: 'webp',
+    quality: 85,
+  }),
+})));
+const sizes = '(max-width: 360px) calc(100vw - 32px), (max-width: 560px) calc(100vw - 40px), (min-width: 701px) and (max-width: 804px) calc(100vw - 284px), 520px';
+---
+{images.length > 0 && <food-gallery class="food-gallery" role="region" aria-roledescription="carousel" aria-labelledby={labelledBy}>
+  {images.map((photo, index) => <figure class="food-slide" data-slide hidden={index !== 0} role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${images.length}`}>
+    <div class="food-frame"><img src={photo.optimized.src} srcset={photo.optimized.srcSet.attribute} sizes={sizes} alt={photo.alt} width={photo.optimized.attributes.width} height={photo.optimized.attributes.height} loading="lazy" decoding="async" /></div>
+    {photo.caption && <figcaption>{photo.caption}</figcaption>}
+  </figure>)}
+  <div class="food-controls" data-controls hidden>
+    <button type="button" data-previous aria-label="Previous photo"><span aria-hidden="true">←</span> Previous</button>
+    <span class="food-counter" data-counter aria-hidden="true">1 / {images.length}</span>
+    <button type="button" data-next aria-label="Next photo">Next <span aria-hidden="true">→</span></button>
+  </div>
+  <p class="sr-only" data-announcement role="status" aria-live="polite" aria-atomic="true"></p>
+</food-gallery>}
+
+<script>
+  class FoodGallery extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.ready) return;
+      const slides = Array.from(this.querySelectorAll<HTMLElement>('[data-slide]'));
+      const controls = this.querySelector<HTMLElement>('[data-controls]');
+      const previous = this.querySelector<HTMLButtonElement>('[data-previous]');
+      const next = this.querySelector<HTMLButtonElement>('[data-next]');
+      const counter = this.querySelector<HTMLElement>('[data-counter]');
+      const announcement = this.querySelector<HTMLElement>('[data-announcement]');
+      if (slides.length < 2 || !controls || !previous || !next || !counter || !announcement) return;
+      let index = 0;
+      const advance = (direction: number) => {
+        slides[index].hidden = true;
+        index = (index + direction + slides.length) % slides.length;
+        slides[index].hidden = false;
+        counter.textContent = `${index + 1} / ${slides.length}`;
+        announcement.textContent = `Photo ${index + 1} of ${slides.length}`;
+      };
+      previous.addEventListener('click', () => advance(-1));
+      next.addEventListener('click', () => advance(1));
+      this.addEventListener('keydown', event => {
+        if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+        if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+        event.preventDefault();
+        advance(event.key === 'ArrowLeft' ? -1 : 1);
+      });
+      this.dataset.ready = 'true';
+      controls.hidden = false;
+    }
+  }
+  if (!customElements.get('food-gallery')) customElements.define('food-gallery', FoodGallery);
+</script>

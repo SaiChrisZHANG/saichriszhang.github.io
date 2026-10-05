@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TeachingEntry from '../components/TeachingEntry.astro';
+import DocumentLink from '../components/DocumentLink.astro';
+import { site } from '../data/site';
+import { experience, teachingIntro, teachingApproach, curriculum, undergraduateFit, graduateFit, teachingExperienceNote } from '../data/teaching';
+---
+<Layout title="Teaching" description="Sai Zhang’s teaching experience, approach, and designed curriculum in labor economics and applied empirical methods.">
+  <header class="page-heading"><p class="eyebrow">Intuition · Models · Evidence</p><h1>Teaching</h1><p class="lead">{teachingIntro}</p><div class="inline-links"><a class="button" href={site.portfolio}>Explore my teaching portfolio <span aria-hidden="true">↗</span></a><DocumentLink document="teachingStatement" /></div></header>
+
+  <section class="section-grid" aria-labelledby="experience-heading"><div class="section-label"><p class="eyebrow">In the classroom</p><h2 id="experience-heading">Teaching experience</h2></div><div><div class="experience-list">{experience.map(entry => <article class="experience"><div><p class="eyebrow">{entry.role} · {entry.institution}</p>{entry.courses.map(course => <h3>{course}</h3>)}</div><p class="experience-period">{entry.period}</p></article>)}</div><p class="experience-note">{teachingExperienceNote}</p></div></section>
+
+  <section class="section-grid" aria-labelledby="curriculum-heading"><div class="section-label"><p class="eyebrow">Designed for future teaching</p><h2 id="curriculum-heading">Curriculum <br />& materials</h2></div><div><p class="section-intro">These courses and research labs form my designed teaching portfolio. They are plans and materials for future teaching.</p><div class="course-grid">{curriculum.map(entry => <TeachingEntry entry={entry} />)}</div><a class="text-link" href={site.portfolio}>Browse course materials <span aria-hidden="true">↗</span></a></div></section>
+
+  <section class="section-grid" aria-labelledby="approach-heading"><div class="section-label"><p class="eyebrow">Teaching approach</p><h2 id="approach-heading">Lecture to <br />research lab</h2></div><div class="prose"><p class="lead">{teachingApproach}</p><div class="teaching-levels"><div><h3>Undergraduate teaching</h3><p>{undergraduateFit}</p></div><div><h3>Graduate teaching</h3><p>{graduateFit}</p></div></div></div></section>
+</Layout>

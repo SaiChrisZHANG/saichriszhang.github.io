@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ResourceEntry from '../components/ResourceEntry.astro';
+import { resources } from '../data/resources';
+---
+<Layout title="Resources" description="Congressional datasets and software for empirical research, compiled and shared by Sai Zhang.">
+  <header class="page-heading"><p class="eyebrow">Tools for empirical research</p><h1>Resources</h1><p class="lead">Compiled datasets and software, with links to the data, documentation, and original sources.</p><nav class="section-nav" aria-label="Resource sections"><a href="#data">Data <span aria-hidden="true">↓</span></a><a href="#software">Software <span aria-hidden="true">↓</span></a></nav></header>
+  {(['Data', 'Software'] as const).map(type => <section class="section-grid" id={type.toLowerCase()} aria-labelledby={`${type.toLowerCase()}-heading`}><div class="section-label"><h2 id={`${type.toLowerCase()}-heading`}>{type}</h2></div><div>{resources.filter(resource => resource.type === type).map(resource => <ResourceEntry resource={resource} />)}</div></section>)}
+</Layout>

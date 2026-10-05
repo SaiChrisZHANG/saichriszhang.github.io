@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PaperEntry from '../components/PaperEntry.astro';
+import DocumentLink from '../components/DocumentLink.astro';
+import { papers } from '../data/research';
+import { site } from '../data/site';
+const sections = [
+  { id: 'job-market-paper', title: 'Job market paper', status: 'Job market paper' },
+  { id: 'working-papers', title: 'Working papers', status: 'Working paper' },
+  { id: 'work-in-progress', title: 'Work in progress', status: 'Work in progress' },
+];
+---
+<Layout title="Research">
+  <header class="page-heading"><p class="eyebrow">Hiring · Learning · Organizations</p><h1>Research</h1><p class="lead">{site.researchIntro}</p><p class="page-subtitle">{site.methods}</p>
+    <DocumentLink document="researchStatement" />
+    <nav class="section-nav" aria-label="Research sections">{sections.map(section => <a href={`#${section.id}`}>{section.title} <span aria-hidden="true">↓</span></a>)}</nav>
+  </header>
+  {sections.map(section => <section class="section-grid research-section" id={section.id} aria-labelledby={`${section.id}-heading`}><div class="section-label"><h2 id={`${section.id}-heading`}>{section.title}</h2></div><div class="paper-list">{papers.filter(paper => paper.status === section.status).map(paper => <PaperEntry paper={paper} />)}</div></section>)}
+</Layout>

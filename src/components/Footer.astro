@@ -1,0 +1,7 @@
+---
+import { site } from '../data/site';
+---
+<footer class="site-footer wrap">
+  <div><span class="footer-name">{site.name}</span><span class="footer-affiliation">{site.affiliation}</span></div>
+  <div class="footer-links"><a href={`mailto:${site.email}`}>{site.email}</a><div class="profile-links"><a href={site.github}>GitHub <span aria-hidden="true">↗</span></a><a href={site.orcid}>ORCID <span aria-hidden="true">↗</span></a></div></div>
+</footer>

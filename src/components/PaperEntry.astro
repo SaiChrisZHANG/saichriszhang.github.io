@@ -1,0 +1,16 @@
+---
+import type { Paper } from '../data/research';
+import { coauthors } from '../data/coauthors';
+import PaperLinks from './PaperLinks.astro';
+import { url } from '../lib/urls';
+interface Props { paper: Paper; compact?: boolean; featured?: boolean; headingLevel?: 'h2' | 'h3'; }
+const { paper, compact = false, featured = false, headingLevel: Heading = 'h3' } = Astro.props;
+---
+<article id={compact ? undefined : paper.id} class:list={['paper', { 'paper-featured': featured, 'paper-compact': compact }]}>
+  {featured && <p class="eyebrow">Job market paper</p>}
+  <Heading class="paper-title"><a href={url(paper.summaryHref ?? `/research/#${paper.id}`)}>{paper.title}</a></Heading>
+  {paper.coauthors?.length && <p class="coauthors">with {paper.coauthors.map((name, index) => <Fragment>{index > 0 ? ' and ' : ''}{coauthors[name] ? <a href={coauthors[name]}>{name}</a> : name}</Fragment>)}</p>}
+  <p class="paper-summary">{paper.summary}</p>
+  {compact && !paper.summaryHref ? <a class="text-link" href={url(`/research/#${paper.id}`)}>Details & abstract <span aria-hidden="true">↗</span></a> : <PaperLinks paper={paper} />}
+  {!compact && paper.abstract && <details class="abstract"><summary>Abstract</summary><div class="abstract-body"><p>{paper.abstract}</p></div></details>}
+</article>

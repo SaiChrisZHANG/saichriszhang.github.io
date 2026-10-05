@@ -1,0 +1,12 @@
+---
+import type { Resource } from '../data/resources';
+interface Props { resource: Resource; }
+const { resource } = Astro.props;
+---
+<article id={resource.id} class="resource-entry">
+  <p class="eyebrow">{resource.coverage ?? resource.language}</p>
+  <h3>{resource.title}</h3>
+  <p class="resource-description">{resource.description}</p>
+  {resource.attribution && <p class="resource-attribution">{resource.attribution}</p>}
+  <div class="resource-links">{resource.links.map(link => <a class="text-link" href={link.href}>{link.label} <span aria-hidden="true">↗</span></a>)}</div>
+</article>

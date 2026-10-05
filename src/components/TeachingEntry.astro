@@ -1,0 +1,11 @@
+---
+import type { CurriculumEntry } from '../data/teaching';
+interface Props { entry: CurriculumEntry; }
+const { entry } = Astro.props;
+---
+<article class="course" id={entry.id}>
+  <p class="eyebrow">{entry.level}</p>
+  <h3>{entry.title}</h3>
+  <p>{entry.summary}</p>
+  {entry.links && <div class="course-links">{entry.links.map(link => <a class="text-link" href={link.href}>{link.label} <span aria-hidden="true">↗</span></a>)}</div>}
+</article>

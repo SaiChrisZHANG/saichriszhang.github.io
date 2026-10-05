@@ -1,0 +1,16 @@
+---
+import type { JmpFigure } from '../data/jmp';
+import { url } from '../lib/urls';
+interface Props {
+  figure: JmpFigure;
+  compact?: boolean;
+}
+const { figure, compact = false } = Astro.props;
+---
+<figure class:list={['research-figure', { 'research-figure--compact': compact }]}>
+  <img src={url(figure.src)} alt={figure.alt} width={figure.width} height={figure.height} loading="lazy" />
+  <figcaption>
+    <p>{figure.caption}</p>
+    <a class="text-link" href={url(figure.src)}>View full-size figure <span aria-hidden="true">↗</span><span class="sr-only">: {figure.alt}</span></a>
+  </figcaption>
+</figure>

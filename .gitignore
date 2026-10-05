@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+.env
+.env.*
+!.env.example
+/source-documents/
+/docs.sources.local.json
+/BUILD_BRIEF.txt
+/START_HERE.txt
+/SaiZhang_Website_Revision_1.txt

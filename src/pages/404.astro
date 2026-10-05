@@ -1,0 +1,5 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { url } from '../lib/urls';
+---
+<Layout title="Page not found"><div class="page-heading"><p class="eyebrow">404</p><h1>Page not found</h1><p class="lead">This address does not lead to a page on this site.</p><a class="text-link" href={url('/')}>Return home <span aria-hidden="true">↗</span></a></div></Layout>

@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PaperEntry from '../components/PaperEntry.astro';
+import DocumentLink from '../components/DocumentLink.astro';
+import { site } from '../data/site';
+import { papers } from '../data/research';
+import { url } from '../lib/urls';
+const jmp = papers.find(paper => paper.status === 'Job market paper')!;
+const workingPapers = papers.filter(paper => paper.status === 'Working paper');
+---
+<Layout>
+  <section class:list={['hero', { 'has-portrait': site.portrait }]} aria-labelledby="intro-heading">
+    <div class="hero-identity">
+      <p class="eyebrow">{site.fields}</p>
+      <h1 id="intro-heading">Sai Zhang<span class="name-period">.</span></h1>
+      <p class="affiliation">{site.role}<br />{site.affiliation}</p>
+      {site.jobMarket.active && <p class="market-note"><span aria-hidden="true" class="status-dot"></span>On the {site.jobMarket.cycle} job market</p>}
+    </div>
+    <div class="hero-bio">
+      <p class="intro-text">{site.bio}</p>
+      <p>{site.agenda}</p>
+      <div class="hero-actions"><a class="button" href={url(jmp.summaryHref ?? `/research/#${jmp.id}`)}>Job market paper <span aria-hidden="true">↗</span></a><a class="text-link" href={url(site.cv)}>CV <span class="link-note">PDF</span></a><a class="text-link" href={`mailto:${site.email}`}>Email <span aria-hidden="true">↗</span></a></div>
+    </div>
+    {site.portrait && <img class="portrait" src={url(site.portrait.src)} alt={site.portrait.alt} width="460" height="460" fetchpriority="high" />}
+  </section>
+
+  <section class="home-feature" aria-label="Featured research">
+    <PaperEntry paper={jmp} compact featured headingLevel="h2" />
+  </section>
+
+  <section class="section-grid" aria-labelledby="selected-research">
+    <div class="section-label"><p class="eyebrow">Research</p><h2 id="selected-research">Working papers</h2><a class="text-link" href={url('/research/')}>All research <span aria-hidden="true">↗</span></a></div>
+    <div class="paper-list">{workingPapers.map(paper => <PaperEntry paper={paper} compact />)}</div>
+  </section>
+
+  <section class="section-grid teaching-preview" aria-labelledby="teaching-heading">
+    <div class="section-label"><p class="eyebrow">Teaching</p><h2 id="teaching-heading">From intuition <br />to evidence.</h2></div>
+    <div class="prose"><p class="lead">I want students to ask economic questions, reason through models, and judge what the evidence can establish.</p><p>My teaching experience spans introductory economics, applied consulting, and doctoral theory. My designed curriculum connects labor economics with empirical methods and research labs.</p><div class="inline-links"><DocumentLink document="teachingStatement" /><a class="text-link" href={url('/teaching/')}>Teaching & curriculum <span aria-hidden="true">↗</span></a><a class="text-link" href={site.portfolio}>Teaching portfolio <span aria-hidden="true">↗</span></a></div></div>
+  </section>
+  <section class="section-grid resources-preview" aria-labelledby="resources-heading"><div class="section-label"><p class="eyebrow">Resources</p><h2 id="resources-heading">Data & software</h2></div><div class="prose"><p>I share compiled congressional datasets and software for empirical research.</p><a class="text-link" href={url('/resources/')}>Explore the resources <span aria-hidden="true">→</span></a></div></section>
+  <div class="personal-note"><p>Beyond economics, I enjoy music and writing. <a href={url('/more/')}>A little more about me <span aria-hidden="true">↗</span></a></p></div>
+</Layout>

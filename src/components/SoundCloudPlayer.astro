@@ -1,0 +1,12 @@
+---
+interface Props {
+  track: { title: string; description: string; href: string; playerSrc: string };
+}
+const { track } = Astro.props;
+---
+<article class="music-item">
+  <h3>{track.title}</h3>
+  <p>{track.description}</p>
+  <iframe class="soundcloud-player" title={`Listen to Sai: ${track.title}`} src={track.playerSrc} width="100%" height="166" loading="lazy" allow="autoplay; encrypted-media"></iframe>
+  <a class="text-link" href={track.href}>Open on SoundCloud <span aria-hidden="true">↗</span></a>
+</article>

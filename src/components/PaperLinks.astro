@@ -1,0 +1,12 @@
+---
+import type { Paper } from '../data/research';
+import { url } from '../lib/urls';
+interface Props { paper: Paper; includeSummary?: boolean; }
+const { paper, includeSummary = true } = Astro.props;
+const [primaryLink, ...otherLinks] = paper.links ?? [];
+---
+<div class="paper-links">
+  {primaryLink && <a class="text-link" href={url(primaryLink.href)}>{primaryLink.label} <span aria-hidden="true">↗</span></a>}
+  {includeSummary && paper.summaryHref && <a class="text-link" href={url(paper.summaryHref)}>Summary <span aria-hidden="true">→</span></a>}
+  {otherLinks.map(link => <a class="text-link" href={url(link.href)}>{link.label} <span aria-hidden="true">↗</span></a>)}
+</div>
