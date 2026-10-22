@@ -138,7 +138,7 @@
   .paper-answer { border-left: 3px solid var(--accent); padding: 1.4rem 1.6rem; background: var(--surface); margin-top: 2rem; }
   .paper-heading .section-nav { gap: .3rem 1.6rem; }
   .paper-heading .section-nav a { font-size: .8rem; }
-  .paper-presentation { width: 100%; max-width: 640px; margin: 0 auto 48px; }
+  .paper-presentation { width: 100%; max-width: 896px; margin: 0 auto 48px; }
   .paper-presentation h2 { font-size: 1.4rem; margin-bottom: 1rem; }
   .paper-video-player { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; min-height: 200px; border: 0; background: #000; border-radius: 2px; }
   .paper-video-player:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
