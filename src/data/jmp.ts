@@ -17,8 +17,9 @@ export type JmpSection = {
   };
 };
 
-// Read-only sources: ApplicationTiming/draft/main.pdf and
-// ApplicationTiming/presentation/jobtalk/main.pdf, both dated October 3, 2026.
+// Summary and figure sources: the October 3, 2026 manuscript and job-talk slides.
+// The linked paper was updated to the October 21, 2026 version; sourceDate below
+// displays that PDF's date. Original authoring sources remain read-only.
 // Claim and figure provenance: source-documents/revision-1/JMP_SOURCE_NOTES.txt.
 // Revised narrative audit: source-documents/revision-2/summary-audit.txt.
 // Shared title, abstract, and material links remain in research.ts.
@@ -28,8 +29,8 @@ export const jmpDetail: {
   lead: string;
   sections: JmpSection[];
 } = {
-  sourceDate: 'October 3, 2026',
-  sourceLabel: 'Paper and job-talk slides',
+  sourceDate: 'October 21, 2026',
+  sourceLabel: 'Paper updated',
   lead:
     'Employers often begin contacting candidates before all applications have arrived. Using a large correspondence experiment, I show that this decision makes application timing consequential even when qualifications are held fixed. Earlier experimental applications receive more consideration because they reach employers before the recruiting process moves into its contact phase. A sequential model quantifies the screening-value gains firms forgo when they move sooner.',
   sections: [
