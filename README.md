@@ -156,7 +156,7 @@ rerun does not create a new Git commit.
 | Coauthor website destinations | `src/data/coauthors.ts` |
 | Teaching experience and designed curriculum links | `src/data/teaching.ts` |
 | Resource datasets, software, links, and credits | `src/data/resources.ts` |
-| Detailed JMP narrative, figures, and captions | `src/data/jmp.ts` |
+| Detailed JMP narrative, figures, slides, and presentation video | `src/data/jmp.ts` |
 | Stable public PDF URLs | `src/data/documents.mjs` |
 | Local source paths (never committed) | `docs.sources.local.json` |
 | Food image order, alt text, optional captions | `src/data/food.ts` |
@@ -172,6 +172,8 @@ The food component supports previous/next, keyboard operation and an accessible
 no-JavaScript fallback. Images are selected square working copies with personal
 metadata removed, then optimized by Astro. SoundCloud uses its native paused
 players and fallback links; recordings are not downloaded or rehosted.
+The JMP presentation uses one shared YouTube video ID for its material links
+and its paused, responsive player on the summary page.
 
 ## Another machine
 

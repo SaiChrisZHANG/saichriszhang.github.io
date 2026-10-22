@@ -121,3 +121,11 @@ export const jmpSlides = {
   href: '/files/JobTalk_ApplicationTiming.pdf',
   date: 'October 3, 2026',
 };
+
+const jmpVideoId = 'rTdpDBPh5xo';
+export const jmpVideo = {
+  title: '10-minute presentation',
+  label: 'Video (10 min)',
+  href: `https://www.youtube.com/watch?v=${jmpVideoId}`,
+  playerSrc: `https://www.youtube-nocookie.com/embed/${jmpVideoId}?autoplay=0&playsinline=1`,
+};

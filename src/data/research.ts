@@ -1,4 +1,4 @@
-import { jmpSlides } from './jmp';
+import { jmpSlides, jmpVideo } from './jmp';
 import { documents } from './documents.mjs';
 
 export type Paper = {
@@ -31,7 +31,7 @@ export const papers: Paper[] = [
         href: documents.jmp.href,
       },
       { label: 'Slides (PDF)', href: jmpSlides.href },
-      { label: 'Video', href: 'https://www.youtube.com/watch?v=rTdpDBPh5xo' },
+      { label: jmpVideo.label, href: jmpVideo.href },
     ],
   },
   {

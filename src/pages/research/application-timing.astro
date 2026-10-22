@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import PaperLinks from '../../components/PaperLinks.astro';
 import ResearchFigure from '../../components/ResearchFigure.astro';
 import { papers } from '../../data/research';
-import { jmpDetail } from '../../data/jmp';
+import { jmpDetail, jmpVideo } from '../../data/jmp';
 import { url } from '../../lib/urls';
 const paper = papers.find(paper => paper.id === 'job-application-timing')!;
 const separator = paper.title.indexOf(': ');
@@ -21,6 +21,21 @@ const subtitle = paper.title.slice(separator + 2);
       <p class="lead paper-answer">{jmpDetail.lead}</p>
       <nav class="section-nav" aria-label="Paper summary sections">{jmpDetail.sections.map(section => <a href={`#${section.id}`}>{section.title} <span aria-hidden="true">↓</span></a>)}</nav>
     </header>
+    <section class="paper-presentation" aria-labelledby="presentation-heading">
+      <h2 id="presentation-heading">{jmpVideo.title}</h2>
+      <iframe
+        class="paper-video-player"
+        title={`${jmpVideo.title}: ${paper.title}`}
+        src={jmpVideo.playerSrc}
+        width="640"
+        height="360"
+        loading="lazy"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+      <a class="text-link" href={jmpVideo.href}>Watch on YouTube <span aria-hidden="true">↗</span></a>
+    </section>
     {jmpDetail.sections.map(section => <section class="section-grid detail-section" id={section.id} aria-labelledby={`${section.id}-heading`}>
       <div class="section-label"><h2 id={`${section.id}-heading`}>{section.title}</h2></div>
       <div class="detail-prose">
