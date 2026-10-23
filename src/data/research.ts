@@ -5,6 +5,7 @@ export type Paper = {
   id: string;
   title: string;
   status: 'Job market paper' | 'Working paper' | 'Work in progress';
+  draftComingSoon?: boolean;
   coauthors?: string[];
   summary: string;
   abstract?: string;
@@ -69,6 +70,7 @@ export const papers: Paper[] = [
     id: 'employer-networks',
     title: 'Employer Networks as Organizational Capital in Professional Education: Evidence from U.S. Law Schools',
     status: 'Work in progress',
+    draftComingSoon: true,
     summary:
       'Linking law-school histories to graduates’ careers, I trace employer relationships around school formation, reorganization, and closure. The project studies how institutions maintain hiring ties that connect successive cohorts to jobs.',
   },
@@ -76,6 +78,7 @@ export const papers: Paper[] = [
     id: 'reallocating-expertise',
     title: 'Reallocating Expertise in the AI Era: Evidence from the U.S. Patent Office',
     status: 'Work in progress',
+    draftComingSoon: true,
     summary:
       'As demand for evaluating AI inventions grows, how does the Patent Office expand specialized capacity? I link application histories, examiner assignments, and written decisions to study how work shifts across experienced specialists, newly observed examiners, and tasks.',
   },
@@ -90,6 +93,7 @@ export const papers: Paper[] = [
     id: 'strategic-predictability',
     title: 'Strategic Predictability: Theory and Evidence from Professional Tennis',
     status: 'Work in progress',
+    draftComingSoon: true,
     summary:
       'A dynamic model and evidence from professional tennis serves examine when predictable behavior can be an investment in future payoffs. The project separates learning about one’s own payoffs from shaping an opponent’s expectations.',
   },

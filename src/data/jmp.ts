@@ -119,7 +119,7 @@ export const jmpDetail: {
 
 export const jmpSlides = {
   href: '/files/JobTalk_ApplicationTiming.pdf',
-  date: 'October 3, 2026',
+  date: 'October 22, 2026',
 };
 
 const jmpVideoId = 'rTdpDBPh5xo';

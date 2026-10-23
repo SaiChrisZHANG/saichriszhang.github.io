@@ -152,7 +152,8 @@ rerun does not create a new Git commit.
 | Content | File |
 | --- | --- |
 | Biography, navigation, email, portfolio, job-market banner, SoundCloud tracks | `src/data/site.ts` |
-| Papers, statuses, coauthors, abstracts, links | `src/data/research.ts` |
+| Papers, statuses, draft availability, coauthors, abstracts, links | `src/data/research.ts` |
+| Portrait image and alternative text | `src/assets/portrait-2026.png`, `src/data/site.ts` |
 | Coauthor website destinations | `src/data/coauthors.ts` |
 | Teaching experience and designed curriculum links | `src/data/teaching.ts` |
 | Resource datasets, software, links, and credits | `src/data/resources.ts` |
@@ -168,6 +169,9 @@ rerun does not create a new Git commit.
 
 Keep repeated information in the shared data files. Add papers with stable IDs
 and only genuine links; separate completed teaching from designed curriculum.
+Set `draftComingSoon: true` on an advanced work in progress to show its small
+“Draft coming soon” marker. The portrait is an imported image asset; Astro builds
+responsive WebP copies for the homepage.
 The food component supports previous/next, keyboard operation and an accessible
 no-JavaScript fallback. Images are selected square working copies with personal
 metadata removed, then optimized by Astro. SoundCloud uses its native paused

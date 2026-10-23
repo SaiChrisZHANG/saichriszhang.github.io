@@ -1,4 +1,6 @@
 import { documents } from './documents.mjs';
+import type { ImageMetadata } from 'astro';
+import portrait from '../assets/portrait-2026.png';
 
 export const site = {
   name: 'Sai Zhang',
@@ -16,7 +18,7 @@ export const site = {
   methods: 'I combine experiments and linked administrative, historical, and text-based records with economic models to make these decision processes measurable.',
   researchIntro: 'I study access to work and the formation of matches, alongside learning and coordination within organizations. Across these projects, I ask how hiring, training, feedback, and the allocation of work shape labor-market opportunities.',
   jobMarket: { active: true, cycle: '2026–2027' },
-  portrait: { src: '/images/sai-zhang.jpg', alt: 'Sai Zhang' } as null | { src: string; alt: string },
+  portrait: { src: portrait, alt: 'Sai Zhang' } as null | { src: ImageMetadata; alt: string },
 };
 
 export const navigation = [

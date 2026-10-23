@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import PaperEntry from '../components/PaperEntry.astro';
 import DocumentLink from '../components/DocumentLink.astro';
@@ -21,7 +22,7 @@ const workingPapers = papers.filter(paper => paper.status === 'Working paper');
       <p>{site.agenda}</p>
       <div class="hero-actions"><a class="button" href={url(jmp.summaryHref ?? `/research/#${jmp.id}`)}>Job market paper <span aria-hidden="true">↗</span></a><a class="text-link" href={url(site.cv)}>CV <span class="link-note">PDF</span></a><a class="text-link" href={`mailto:${site.email}`}>Email <span aria-hidden="true">↗</span></a></div>
     </div>
-    {site.portrait && <img class="portrait" src={url(site.portrait.src)} alt={site.portrait.alt} width="460" height="460" fetchpriority="high" />}
+    {site.portrait && <Image class="portrait" src={site.portrait.src} alt={site.portrait.alt} width={540} widths={[100, 200, 270, 540, 810]} sizes="(max-width: 360px) 82px, (max-width: 700px) 100px, (max-width: 1000px) 230px, 270px" format="webp" quality={85} loading="eager" fetchpriority="high" />}
   </section>
 
   <section class="home-feature" aria-label="Featured research">
